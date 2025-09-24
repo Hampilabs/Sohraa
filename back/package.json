@@ -4,9 +4,16 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
   }
 }

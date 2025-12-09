@@ -7,4 +7,4 @@ const router = express.Router();
 //   bookRoomTypeByPropertyId
 // );
 
-// router.get("/:propertyId/bookings", getPropertyBookings);
+

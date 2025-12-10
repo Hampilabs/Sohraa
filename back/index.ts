@@ -2,11 +2,33 @@ import express from "express";
 import cors from "cors";
 import propertyRoutes from "./routes/propertyRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import helmet from "helmet";
 import dotenv from "dotenv";
+import rateLimit from "express-rate-limit";
+import compression from "compression";
+
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(limiter);
+
+
+app.set("trust proxy", 1);
+
+// -------------------- Compression --------------------
+app.use(compression());
+
+
 
 app.use(
   cors({
@@ -23,6 +45,9 @@ app.use(
     allowedHeaders: ["content-type", "authorization"], // 🔥 REQUIRED
   })
 );
+
+app.use(helmet());
+
 
 app.use(express.json());
 
